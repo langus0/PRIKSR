@@ -3,10 +3,34 @@ using IObj = Ice.Object; //mogę teraz używać Iobj zamiast Ice.Object
 
 namespace ICEServer
 {
+
+	class Server : Ice.Application
+	{
+	 	public override int run(string[] args)
+		{
+			shutdownOnInterrupt();
+
+			Ice.ObjectAdapter adapter = communicator().createObjectAdapter("SimplePrinterAdapter");
+			Ice.Object obj = new PrinterI();
+			adapter.add(obj, Ice.Util.stringToIdentity("SimplePrinter"));
+			adapter.activate();
+
+			communicator().waitForShutdown();
+			if (interrupted())
+				Console.Error.WriteLine(appName() + " - terminationg");
+			return 0;
+		}
+	}
 	class MainClass
 	{
 		public static void Main (string[] args)
 		{
+			Server srv = new Server();
+			Environment.Exit(srv.main(args));
+
+
+			/*
+
 			int status = 0;
 			Ice.Communicator ic = null;
 			try {
@@ -34,7 +58,7 @@ namespace ICEServer
 				}
 			}
 			Environment.Exit(status);
-
+*/
 		}
 	}
 }

@@ -3,10 +3,28 @@ using Demo;
 
 namespace ICE
 {
+
+	class Client:Ice.Application{
+		public override  int run (string[] args)
+		{
+			Ice.ObjectPrx obj = communicator().stringToProxy(@"SimplePrinter@SimplePrinterAdapter");
+			PrinterPrx printer = PrinterPrxHelper.checkedCast(obj);
+			if (printer == null)
+				throw new ApplicationException("dsds");
+			Console.WriteLine(printer.printString("registry"));
+			return 0;
+		}
+
+	}
 	class MainClass
 	{
+
+
 		public static void Main (string[] args)
 		{
+
+			Client cln = new Client();
+			Environment.Exit(cln.main(args));/*
 			int status = 0;
 			Ice.Communicator ic = null;
 			try {
@@ -31,7 +49,7 @@ namespace ICE
 					status = 1;
 				}
 			}
-			Environment.Exit(status);
+			Environment.Exit(status);*/
 		}
 	}
 }
