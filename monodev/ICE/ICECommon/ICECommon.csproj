@@ -40,4 +40,9 @@
     <Compile Include="hello.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <None Include="..\..\..\hello.ice">
+      <Link>hello.ice</Link>
+    </None>
+  </ItemGroup>
 </Project>
