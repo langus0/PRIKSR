@@ -35,10 +35,15 @@ new server template
 
 --IceBoc
 new tempale SERVICE
-	entry point: NAZWA.dll:NAMESPACCE:KLASA
+	entry point: NAZWA.dll:NAMESPACCE.KLASA
 new adapter
 
-new service template
+new servere template
 	uruchamianie iceboxnet
 	working direcory sciezka od dll
 	dodaj adapter z wczesniej utworzonego templatu
+
+
+---aktualizacja plikow
+stworz karalog na bianria
+icepatch2calc - policz hashe plikow
