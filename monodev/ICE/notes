@@ -1,0 +1,44 @@
+KLIENT
+SERBER
+REGISTRY
+
+
+---Uruchamianie nodow
+
+icegridgui
+polacz sie
+new app, dodajemy ja do wezla ( new sever)
+
+   ActivationMode:on demand (uruchom jak przyjdzei zadanie
+   Path to Executable: mono
+   CommandArguments pelna sciezka do programu
+
+       W serwerze: dodaj adapter (podmien ID na prosrsze)
+   
+  SAVE TO REGISTRY!!! (zapis do klastra) 
+  Kliknij na serbver w LIVE DEPLOMENT i kliknij play na serwerze
+
+
+aRUCHAMISASZ TYLKO NODE + CLIENT BEZ POZOSTAlych
+
+
+---wiele nodow
+new app
+new replica group
+  typ obciazenia
+  zdefiniuj znane obiekty: nazwa + typ z plike *.ice  ::Demo::Printer (konieczne dwukropki)
+
+new server template
+  jak normalnie tylko ze id musi byc unikalne - uzyj np. ${index}  - zdefiniuj w parametrach templatu!!!
+  dodaj adaptery - ustaw w nich replica goups!!!
+
+
+--IceBoc
+new tempale SERVICE
+	entry point: NAZWA.dll:NAMESPACCE:KLASA
+new adapter
+
+new service template
+	uruchamianie iceboxnet
+	working direcory sciezka od dll
+	dodaj adapter z wczesniej utworzonego templatu
