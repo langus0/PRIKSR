@@ -10,7 +10,7 @@ namespace ICE
 			Ice.ObjectPrx obj = communicator().stringToProxy(@"SimplePrinter@SimplePrinterAdapter");
 			PrinterPrx printer = PrinterPrxHelper.checkedCast(obj);
 			if (printer == null)
-				throw new ApplicationException("dsds");
+				throw new ApplicationException("invalid proxy");
 			Console.WriteLine(printer.printString("registry"));
 			return 0;
 		}
