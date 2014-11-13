@@ -4,7 +4,28 @@ using IObj = Ice.Object; //mogę teraz używać Iobj zamiast Ice.Object
 namespace ICEServer
 {
 
-	class Server : Ice.Application
+	class Server : IceBox.Service{
+		
+		
+		private Ice.ObjectAdapter _adapter;
+		
+		public void start(string name, Ice.Communicator communicator, string[] args)
+		{
+			
+			_adapter = communicator.createObjectAdapter(name);
+			_adapter.add(new PrinterI(), Ice.Util.stringToIdentity("SimplePrinter"));
+			_adapter.activate();
+			
+			
+		}
+		public void stop ()
+		{
+			_adapter.deactivate();
+		}
+		
+	}
+
+	/*class Server : Ice.Application
 	{
 	 	public override int run(string[] args)
 		{
@@ -29,7 +50,7 @@ namespace ICEServer
 			Environment.Exit(srv.main(args));
 
 
-			/*
+			*//*
 
 			int status = 0;
 			Ice.Communicator ic = null;
@@ -59,6 +80,6 @@ namespace ICEServer
 			}
 			Environment.Exit(status);
 */
-		}
-	}
+	/*	}
+	}*/
 }

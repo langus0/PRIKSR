@@ -9,7 +9,7 @@ namespace ICE
 		{
 
 			Ice.ObjectPrx obj = communicator().stringToProxy(@"SimplePrinter");
-			//Ice.ObjectPrx obj = communicator().stringToProxy(@"SimplePrinter@SimplePrinterAdapter");  //jeden adapter
+			//Ice.ObjectPrx obj = communicator().stringToProxy(@"SimplePrinter@SimplePrinterAdapter");
 			PrinterPrx printer = PrinterPrxHelper.checkedCast(obj);
 			if (printer == null)
 				throw new ApplicationException("invalid proxy");
