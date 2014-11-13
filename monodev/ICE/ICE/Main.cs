@@ -7,7 +7,9 @@ namespace ICE
 	class Client:Ice.Application{
 		public override  int run (string[] args)
 		{
-			Ice.ObjectPrx obj = communicator().stringToProxy(@"SimplePrinter@SimplePrinterAdapter");
+
+			Ice.ObjectPrx obj = communicator().stringToProxy(@"SimplePrinter");
+			//Ice.ObjectPrx obj = communicator().stringToProxy(@"SimplePrinter@SimplePrinterAdapter");  //jeden adapter
 			PrinterPrx printer = PrinterPrxHelper.checkedCast(obj);
 			if (printer == null)
 				throw new ApplicationException("invalid proxy");
