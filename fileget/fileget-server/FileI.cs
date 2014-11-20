@@ -19,12 +19,14 @@ namespace filegetserver
 						
 			// Create Ice ID
 			Ice.Identity myID = new Ice.Identity();
+			//losowa nazwa w ICE, bo i tak odnoismy sie do pliku poprez katalog
 			myID.name = System.Guid.NewGuid ().ToString ();
 						
 			// Add the identity to the object adapter
 			_adapter.add(this, myID);
 			
-			// Create a proxy for the new file and add it as a child to the parent
+			// Create a proxy for the new file and add it as a child to the parents
+			// ucheked bo mam pewnosc i jest wydajniejsze
 			FilePrx thisFile = FilePrxHelper.uncheckedCast(_adapter.createProxy(myID));
 			owner.addFile(thisFile);
 		}
@@ -36,22 +38,22 @@ namespace filegetserver
 		
 		public override long getByteLength (Ice.Current current__)
 		{
-			//TODO: implement
+			return byteLength;
 		}
 		
 		public override ChunkPrx getChunk (long chunkSeqNo, Ice.Current current__)
 		{
-			//TODO: implement
+			return getChunk(chunkSeqNo);
 		}
 		
 		public override Filesystem.ChunkPrx[] getChunks (Ice.Current current__)
 		{			
-			//TODO: implement
+			return chunks.ToArray();
 		}
 		
 		public override string getName (Ice.Current current__)
 		{
-			//TODO: implement
+			return name;
 		}
 	}
 }

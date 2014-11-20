@@ -4,8 +4,47 @@ using Filesystem;
 
 namespace filegetserver
 {
+	class Server2 : IceBox.Service{
+		
+		
+		private Ice.ObjectAdapter _adapter;
+		
+		public void start(string name, Ice.Communicator communicator, string[] args)
+		{
+			
+		// Create an object adapter (stored in the _adapter static members)	
+			Ice.ObjectAdapter adapter = communicator.createObjectAdapter(name);//"DirectoryAdapter"
+			DirectoryI._adapter = adapter;
+			FileI._adapter = adapter;
+			ChunkI._adapter = adapter;
+			
+			// Create the directory
+			DirectoryI root = new DirectoryI ("main");
+			
+			// Create a file called "README" in the directory	
+			//TODO: read actual file from a disk
+			FileI file = new FileI ("README", 100, root);
+			
+			// Create chunks
+			//TODO: split file into chunks, compute hashes and create chunks
+			new ChunkI (0, new byte [] {0, 0}, new byte [] {0x10, 0x10}, file);
+			new ChunkI (1, new byte [] {1, 1}, new byte [] {0x11, 0x11}, file);
+			
+			// All objects are created, allow client requests now
+			adapter.activate();
+			
+			
+		}
+		public void stop ()
+		{
+			_adapter.deactivate();
+		}
+		
+	}
+
 	public class Server
 	{
+
 		class App : Ice.Application
 		{
 			public override int run(string[] args)

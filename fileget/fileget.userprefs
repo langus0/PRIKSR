@@ -1,15 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="fileget-server/DirectoryI.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="fileget-server/Main.cs">
     <Files>
-      <File FileName="fileget-server/Main.cs" Line="1" Column="1" />
-      <File FileName="fileget-server/DirectoryI.cs" Line="1" Column="1" />
-      <File FileName="fileget-server/FileI.cs" Line="1" Column="1" />
-      <File FileName="fileget-server/ChunkI.cs" Line="1" Column="1" />
-      <File FileName="filget-client/Main.cs" Line="1" Column="1" />
-      <File FileName="fileget.ice" Line="1" Column="1" />
+      <File FileName="fileget-server/Main.cs" Line="15" Column="1" />
+      <File FileName="fileget-server/DirectoryI.cs" Line="17" Column="4" />
+      <File FileName="fileget-server/FileI.cs" Line="21" Column="33" />
+      <File FileName="fileget-server/ChunkI.cs" Line="14" Column="5" />
+      <File FileName="filget-client/Main.cs" Line="19" Column="49" />
+      <File FileName="fileget.ice" Line="17" Column="16" />
       <File FileName="filget-client/AssemblyInfo.cs" Line="1" Column="1" />
       <File FileName="fileget-server/AssemblyInfo.cs" Line="1" Column="1" />
+      <File FileName="fileget-common/fileget.cs" Line="31" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
