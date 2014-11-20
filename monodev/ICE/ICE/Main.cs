@@ -8,13 +8,35 @@ namespace ICE
 		public override  int run (string[] args)
 		{
 
-			Ice.ObjectPrx obj = communicator().stringToProxy(@"SimplePrinter");
+			Ice.RouterPrx defRouter = communicator ().getDefaultRouter ();
+		
+			Glacier2.RouterPrx router = Glacier2.RouterPrxHelper.checkedCast (defRouter);
+
+			if (router == null)
+				Console.WriteLine("NULL!!");
+
+			router.createSession ("test", "test");
+			Console.WriteLine("s");
+			//---Stare bez zmian
+			Ice.ObjectPrx obj = communicator ().stringToProxy (@"SimplePrinter");
 			//Ice.ObjectPrx obj = communicator().stringToProxy(@"SimplePrinter@SimplePrinterAdapter");
-			PrinterPrx printer = PrinterPrxHelper.checkedCast(obj);
+			PrinterPrx printer = PrinterPrxHelper.checkedCast (obj);
 			if (printer == null)
-				throw new ApplicationException("invalid proxy");
-			Console.WriteLine(printer.printString("registry"));
+				throw new ApplicationException ("invalid proxy");
+			Console.WriteLine (printer.printString ("registry"));
+			//---END Stare bez zmian
+
+			if (router != null) {
+				try{
+					router.destroySession();
+				}catch(Ice.ConnectionLostException){
+
+				}
+			}
+
 			return 0;
+
+
 		}
 
 	}

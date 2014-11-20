@@ -35,6 +35,9 @@
     <Reference Include="Ice, Version=3.5.1.0, Culture=neutral, PublicKeyToken=cdd571ade22f2f16">
       <Private>False</Private>
     </Reference>
+    <Reference Include="Glacier2, Version=3.5.1.0, Culture=neutral, PublicKeyToken=cdd571ade22f2f16">
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />

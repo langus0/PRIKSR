@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- This file was written by IceGrid Admin -->
+<icegrid>
+   <application name="HelloPrinter">
+      <service-template id="HelloServiceTemplate">
+         <parameter name="name"/>
+         <service name="${name}" entry="ICEServer.dll:ICEServer.Server">
+            <properties>
+            </properties>
+            <adapter name="${service}" endpoints="default" id="${server}.${service}" replica-group="SimplePrinterGroup"/>
+         </service>
+      </service-template>
+      <server-template id="Glacier2">
+         <parameter name="instance-name" default="${application}.Glacier2"/>
+         <parameter name="client-endpoints"/>
+         <parameter name="server-endpoints" default=""/>
+         <parameter name="session-timeout" default="0"/>
+         <server id="${instance-name}" activation="always" exe="glacier2router">
+            <properties>
+               <property name="Glacier2.Client.Endpoints" value="${client-endpoints}"/>
+               <property name="Glacier2.Server.Endpoints" value="${server-endpoints}"/>
+               <property name="Glacier2.InstanceName" value="${instance-name}"/>
+               <property name="Glacier2.SessionTimeout" value="${session-timeout}"/>
+            </properties>
+         </server>
+      </server-template>
+      <server-template id="IcePatch2">
+         <parameter name="instance-name" default="${application}.IcePatch2"/>
+         <parameter name="endpoints" default="default"/>
+         <parameter name="directory"/>
+         <server id="${instance-name}" activation="on-demand" application-distrib="false" exe="icepatch2server">
+            <properties>
+               <property name="IcePatch2.InstanceName" value="${instance-name}"/>
+               <property name="IcePatch2.Directory" value="${directory}"/>
+            </properties>
+            <adapter name="IcePatch2" endpoints="${endpoints}" id="${server}.IcePatch2">
+               <object identity="${instance-name}/server" type="::IcePatch2::FileServer"/>
+            </adapter>
+         </server>
+      </server-template>
+      <server-template id="NewIceBoxTemplate">
+         <parameter name="index"/>
+         <icebox id="NewIceBox${index}" activation="on-demand" exe="mono" pwd="${server.distrib}/bin">
+            <option>/usr/bin/iceboxnet.exe</option>
+            <distrib icepatch="${application}.IcePatch2/server"/>
+            <service-instance template="HelloServiceTemplate" name="HelloService"/>
+         </icebox>
+      </server-template>
+      <replica-group id="SimplePrinterGroup">
+         <load-balancing type="adaptive" load-sample="1" n-replicas="0"/>
+         <object identity="SimplePrinter" type="::Demo::Printer"/>
+      </replica-group>
+      <node name="Node1">
+         <server-instance template="Glacier2" client-endpoints="tcp -p 10000" server-endpoints="tcp" session-timeout="3000">
+            <properties>
+               <property name="Glacier2.CryptPasswords" value="/tmp/hello/passwords"/>
+               <property name="Ice.Default.Locator" value="IceGrid/Locator:tcp -h 127.0.0.1 -p 4061"/>
+            </properties>
+         </server-instance>
+         <server-instance template="IcePatch2" directory="/tmp/hello/distrib"/>
+         <server-instance template="NewIceBoxTemplate" index="1"/>
+      </node>
+      <node name="Node2">
+         <server-instance template="NewIceBoxTemplate" index="2"/>
+      </node>
+   </application>
+</icegrid>
