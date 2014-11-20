@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fileget-common", "fileget-common\fileget-common.csproj", "{02077A91-B40F-4897-B0BF-2957854DFBA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "filget-client", "filget-client\filget-client.csproj", "{99084A3A-2A4C-40E3-945B-902A80ED76CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fileget-server", "fileget-server\fileget-server.csproj", "{F6FC0089-E54D-4EBD-BEB6-980139F5503C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{04282B55-C007-48E4-875D-5D40A47B1123}"
+	ProjectSection(SolutionItems) = preProject
+		fileget.ice = fileget.ice
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{02077A91-B40F-4897-B0BF-2957854DFBA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02077A91-B40F-4897-B0BF-2957854DFBA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02077A91-B40F-4897-B0BF-2957854DFBA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02077A91-B40F-4897-B0BF-2957854DFBA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99084A3A-2A4C-40E3-945B-902A80ED76CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99084A3A-2A4C-40E3-945B-902A80ED76CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99084A3A-2A4C-40E3-945B-902A80ED76CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99084A3A-2A4C-40E3-945B-902A80ED76CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6FC0089-E54D-4EBD-BEB6-980139F5503C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6FC0089-E54D-4EBD-BEB6-980139F5503C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6FC0089-E54D-4EBD-BEB6-980139F5503C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6FC0089-E54D-4EBD-BEB6-980139F5503C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = fileget-server\fileget-server.csproj
+	EndGlobalSection
+EndGlobal
